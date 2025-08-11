@@ -165,7 +165,7 @@ def permtest_pd(df, statfunction, perm_cols, n_samples=9999, alternative='two-si
 
     return pvalue
 
-
+"""
 def _test_permtest_pd(effect=0.5, n_samples=9999):
     from scipy import stats
     import time
@@ -210,7 +210,7 @@ def _test_bootci_pd(n_samples=10000, method='bca'):
     print('MeanA', a)
     print('MedianB', b)
     print('Time: %1.2f sec' % et)
-
+"""
 
 from contextlib import contextmanager
 

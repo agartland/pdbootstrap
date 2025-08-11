@@ -22,7 +22,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/pdbootstrap"
+Homepage = "https://github.com/agartland/pdbootstrap"
 
-[tool.setuptools.packages.find]
-where = ["pdbootstrap"]
+[tool.setuptools]
+packages = ["pdbootstrap"]

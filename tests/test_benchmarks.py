@@ -1,14 +1,11 @@
-def stat_mean_single_col(arr):
-    return np.array([np.mean(arr)])
-
-import time
-import pytest
-from pdbootstrap import bootstrap_pd, bootstrap_nb
-from tests.test_data import single_col_df, multi_col_df
 import time
 import pytest
 from pdbootstrap import bootstrap_pd
 from tests.test_data import single_col_df, multi_col_df
+
+def stat_mean_single_col(arr):
+    return np.array([np.mean(arr)])
+
 
 @pytest.fixture(scope="session", autouse=True)
 def init_benchmark_file():

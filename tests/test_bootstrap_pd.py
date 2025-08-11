@@ -1,3 +1,4 @@
+import sys; print("PYTEST sys.path head:", sys.path[:3])
 import pytest
 from pdbootstrap import bootstrap_pd
 from tests.test_data import small_nan_df, small_no_var_df, single_col_df, multi_col_df

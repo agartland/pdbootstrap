@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 
-
 # Single column DataFrame
 def single_col_df():
     return multi_col_df()[['a']]
