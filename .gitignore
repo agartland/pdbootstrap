@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# VS Code
+.vscode/
+
+# Test and coverage
+.coverage
+.tox/
+.pytest_cache/
+htmlcov/
+
+# Logs
+*.log
+
+# Benchmark and result files
+BENCHMARK_RESULTS.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.bak
+*.swp
+*.swo
+
+# Package management
+pip-wheel-metadata/
+
+# MyPy
+.mypy_cache/
+
+# Others
+*.tmp
+*.old
