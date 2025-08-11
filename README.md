@@ -1,8 +1,5 @@
 # pdbootstrap
-Modern bootstrap and permutation testing tools for pandas and numpy/numba arrays.
-# pdbootstrap
-
-Modern bootstrap and permutation testing tools for pandas DataFrames.
+Python package for bootstrap and permutation testing for pandas DataFrames.
 
 ## Installation
 
