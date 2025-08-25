@@ -45,14 +45,33 @@ def bootci_pd(df, statfunction, alpha=0.05, n_samples=10000, method='bca', n_job
     alphas = np.array([alpha/2, 1-alpha/2])
 
     res = pd.Series(statfunction(df))
+    keys = list(res.index)
     
+    def _normalize_out(out):
+        if out is None:
+            return {k: np.nan for k in keys}
+        if isinstance(out, pd.Series):
+            return out.reindex(keys).to_dict()
+        if isinstance(out, dict):
+            # ensure identical key set & order
+            return {k: out.get(k, np.nan) for k in keys}
+        if isinstance(out, np.ndarray) or isinstance(out, list):
+            return {k: out[k] for k in keys}
+        if np.isscalar(out):
+            return {0: out}
+        raise TypeError("statfunction must return a dict, Series, np.ndarray or scalar")
+        
     # boot_res = [statfunction(df.sample(frac=1, replace=True)) for i in range(n_samples)]
 
     # Bootstrap resampling with parallel processing
     def bootstrap_sample(seed):
         warnings.filterwarnings("ignore", category=FutureWarning)
         np.random.seed(seed)
-        return statfunction(df.sample(frac=1, replace=True))
+        try:
+            out = statfunction(df.sample(frac=1, replace=True))
+        except:
+            out = None
+        return _normalize_out(out)
 
     # boot_res = Parallel(n_jobs=n_jobs)(
     #     delayed(bootstrap_sample)(np.random.randint(0, 1e9)) for _ in range(n_samples)
@@ -75,7 +94,11 @@ def bootci_pd(df, statfunction, alpha=0.05, n_samples=10000, method='bca', n_job
         jack_res = []
         for i in range(df.shape[0]):
             ind[i] = False
-            jack_res.append(statfunction(df.loc[ind]))
+            try:
+                out = statfunction(df.loc[ind])
+            except Exception:
+                out = None
+            jack_res.append(_normalize_out(out))
             ind[i] = True
 
         jack_res = pd.DataFrame(jack_res)
